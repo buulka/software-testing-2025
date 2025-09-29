@@ -45,7 +45,73 @@
 
 
 ### 3. Примеры написанных тестов
-[Примеры тестов](test_zhegalkin.py)
+1. Базовое XOR преобразование
+```python
+def test_row_xor_basic(self):
+    """Тест базового XOR преобразования строки"""
+    # Arrange
+    test_row = [1, 0, 1, 0]
+    expected = [1, 1, 1] 
+    
+    # Act
+    result = row_xor(test_row)
+    
+    # Assert
+    self.assertEqual(result, expected)
+```
+
+2. Граничный случай  - строка с одним элементом
+
+```python
+def test_row_xor_single_element(self):
+    """Тест граничного случая - строка с одним элементом"""
+    # Arrange
+    test_row = [1]
+    expected = [] 
+    
+    # Act
+    result = row_xor(test_row)
+    
+    # Assert
+    self.assertEqual(result, expected)
+```
+
+4. Обработка пустой таблицы
+```python
+def test_make_triangle_empty(self):
+    """Тест граничного случая - пустая таблица"""
+    # Arrange
+    table = []
+    n = 0
+    
+    # Act
+    result = make_triangle(table, n)
+    
+    # Assert
+    self.assertEqual(result, [])
+```
+
+5. Визуализация треугольника
+```python
+@patch('sys.stdout', new_callable=StringIO)
+def test_draw_triangle(self, mock_stdout):
+    """Тест отрисовки треугольника"""
+    # Arrange
+    triangle = [
+        [0, 1, 1, 0],
+        [1, 0, 1],
+        [1, 1],
+        [0]
+    ]
+
+    # Act
+    draw_triangle(triangle)
+    output = mock_stdout.getvalue()
+
+    # Assert
+    self.assertTrue(len(output) > 0)
+    self.assertIn("  ", output)
+```
 
 ### 4. Результаты запуска тестов и метрика code coverage
 
