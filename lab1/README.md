@@ -1,15 +1,15 @@
-University: ITMO University
+Университет: **ITMO University**
 
-Faculty: FICT
+Факультет: **FICT**
 
-Course: Software Testing
+Курс: **Software Testing**
 
-Year: 2025/2026
+Год: **2025/2026**
 
-Group: K3323
+Группа: **K3323**
 
-Author: Ivanova Ekaterina Andreevna
+Автор: **Ivanova Ekaterina Andreevna**
 
-Lab: Lab1
+---
 
-Laboratory Work No. 1: "Unit tests"
+## Лабораторная работа 1. Unit tests
