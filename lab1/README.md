@@ -10,6 +10,8 @@
 
 Автор: **Ivanova Ekaterina Andreevna**
 
+Ссылка на репозиторий: **https://github.com/buulka/software-testing-2025/tree/main/lab1**
+
 ---
 
 ## Лабораторная работа 1. Unit tests
