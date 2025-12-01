@@ -45,8 +45,8 @@
 
 - Успешная авторизация
   
-  ```javascript
-    describe('Successful Login', () => {
+```javascript
+  describe('Successful Login', () => {
     it('Авторизация с корректными данными', () => {
     cy.visit('http://localhost:8080/login');
     cy.get('input[name="login"]').type('test_user');
@@ -57,13 +57,13 @@
     cy.url().should('include', '/main');
     cy.contains('Добро пожаловать').should('be.visible');
     });
-    });
-  ```
+  });
+```
 
 - Ошибка авторизации
 
-  ```javascript
-  describe('Login Error Handling', () => {
+```javascript
+describe('Login Error Handling', () => {
   it('Отображение ошибки при неверных данных', () => {
   cy.visit('http://localhost:8080/login');
   cy.get('input[name="login"]').type('wrong_user');
@@ -73,13 +73,13 @@
   
   cy.contains('Неверный логин или пароль').should('be.visible');
   });
-  });
-  ```
+});
+```
 
 - Корректное отображения интерфейса после входа
 
-  ```javascript
-    describe('Main Page UI Rendering', () => {
+```javascript
+  describe('Main Page UI Rendering', () => {
     it('Проверка отображения ключевых элементов интерфейса', () => {
     cy.visit('http://localhost:8080/login');
     cy.get('input[name="login"]').type('test_user');
@@ -92,8 +92,8 @@
     cy.contains('Фильтры').should('be.visible');
     cy.get('.table').should('exist');
     });
-    });
-  ```
+  });
+```
 
 ### 4. Результаты запуска тестов и метрика code coverage
 
