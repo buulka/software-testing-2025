@@ -1,0 +1,53 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://js.stripe.com/v3/"></script>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>
+				{{ name }}
+			</h3>
+
+			<p>
+				{% for elem in description %}
+                    <h5>Товар: {{ elem.name }}</h5>
+                    <h6>Цена: {{ elem.output_price }}</h6><br>
+
+                {% endfor %}
+			</p>
+			<div class="row">
+				<div class="col-md-2">
+					<p>
+						{{ price }}
+					</p>
+				</div>
+                <div class="col-md-2">
+                    <p>
+                        {% if discount != Null %}
+                            + купон на скидку: {{ discount }}%
+                        {% endif %}
+                    </p>
+                </div>
+				<div class="col-md-2">
+
+					<button type="button" class="btn btn-success" id="buy-button">
+						Купить
+					</button>
+                    <script type="text/javascript">
+                        const stripe = Stripe('pk_test_51M5dVjB8COH5NDNLd8Fi3KsRagLMLAH6AeO8b89Pythf1i2Rv5uHkrntfe3sVIrNTozJ6Y7G46uxsTa3n2eLPJX000nvoKyfB3');
+                        const buyButton = document.getElementById('buy-button');
+                        buyButton.addEventListener('click', function() {
+        fetch('/buy/' + {{ order_id }})
+            .then(response => { return response.json()})
+            .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+      });
+    </script>
+
+				</div>
+				<div class="col-md-6">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+</div>

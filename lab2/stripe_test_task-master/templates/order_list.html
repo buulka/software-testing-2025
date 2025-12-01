@@ -1,0 +1,35 @@
+<script src="https://js.stripe.com/v3/"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заказов</title>
+</head>
+<body>
+<h3>Список заказов</h3>
+
+{% for order in orders_list %}
+    <h4>Заказ №{{ order.id }}</h4>
+
+    {% for item in order.items %}
+        <p>{{ item.name }}</p>
+        <p>{{ item.output_price }}</p><br>
+    {% endfor %}
+
+    <p>{{ order.price }}</p><br>
+
+    {% if order.coupon_id != None %}
+        <p>Будет применен скидочный купон {{ order.percent }}</p>
+    {% endif %}
+
+    <button type="button" class="btn btn-success" id="button{{ order.id }}">
+						Перейти к оформлению заказа
+    </button>
+                    <script type="text/javascript">
+    document.getElementById("button{{ order.id }}").onclick = function () {
+        location.href = "/order/" + {{ order.id }} + '/';
+    };
+</script>
+{% endfor %}
+</body>
+</html>

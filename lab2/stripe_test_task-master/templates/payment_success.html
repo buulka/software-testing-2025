@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Успешная оплата</title>
+</head>
+<body>
+<p>Оплата по заказу №{{ order_id }} прошла успешно</p>
+
+<button type="button" id="menu-button">
+    Вернуться к списку заказов
+</button>
+
+<script type="text/javascript">
+    document.getElementById("menu-button").onclick = function () {
+        location.href = "/";
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+name: 'Main CI'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker login
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login --username ${{ github.actor }} --password-stdin ghcr.io
+      - name: Build container
+        run: docker build -t ghcr.io/buulka/stripe_test_task:latest .
+      - name: Push container
+        run: docker push ghcr.io/buulka/stripe_test_task:latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
+          script: cd stripe_test_task && git pull && docker compose -f docker-compose.prod.yml up -d
